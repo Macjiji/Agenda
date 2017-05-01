@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Agenda</name>
+    </assembly>
+    <members>
+        <member name="M:Agenda.AjouterEvenement.OnCreate(Android.OS.Bundle)">
+            <summary>
+                Méthode OnCreate nécessaire pour créer l'activité
+            </summary>
+            <param name="savedInstanceState"></param>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.InitialiseBaseDeDonnees">
+            <summary>
+                Méthode permettant d'initialiser la base de données.
+            </summary>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.InitialiseBoutons">
+            <summary>
+                Méthode permettant d'initialiser les boutons. Elle contient :
+                    -> L'initialisation du bouton d'ouverture du fragment de date;
+                    <see cref="M:Agenda.AjouterEvenement.AfficherDatePicker"/>
+                    -> L'initialisation du bouton de validation du formulaire.
+                    <see cref="M:Agenda.AjouterEvenement.EvenementEstValide"/>
+            </summary>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.InitialiseEditText">
+            <summary>
+                Méthode permettant d'initialise les champ d'édition. Elle contient :
+                    -> L'initialisation du champ Nom de l'événement;
+                    -> L'initialisation du champ Description de l'événement;
+                    -> L'initialisation du champ Date de l'événement.
+            </summary>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.AfficherDatePicker">
+            <summary>
+                Méthode permettant d'afficher le DatePicker
+            </summary>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.EvenementEstValide">
+            <summary>
+                Méthode permettant de vérifier qu'un événement est valide pour l'insérer en base de données. On va tester :
+                    -> Si le nom de l'événement est renseigné;
+                    -> Si la date est supérieur à la date du jour.
+            </summary>
+            <returns>True si l'événement est valide, False sinon</returns>
+        </member>
+        <member name="M:Agenda.AjouterEvenement.OnDateSet(Android.Widget.DatePicker,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Méthode permettant de récupérer les informations dans le Fragment DatePicker en vue d'attribuer les valeurs à l'événement. C'est un écouteur d'événement !
+            </summary>
+            <param name="view">La vue du DatePicker</param>
+            <param name="year">L'année récupérée</param>
+            <param name="monthOfYear">Le mois récupéré</param>
+            <param name="dayOfMonth">Le jour du mois récupéré</param>
+        </member>
+        <member name="F:Agenda.Database.sqldb">
+            <summary>
+            Liste des attributs
+            </summary>
+        </member>
+        <member name="M:Agenda.Database.#ctor">
+            <summary>
+            Constructeur par défaut
+            </summary>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database(); 
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.Database.#ctor(System.String)">
+            <summary>
+            Constructeur prenant en paramètre le nom de la base de données
+            </summary>
+            <param name="sqldb_name">Le nom de la base de données sur laquelle effectuer les opération</param>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements")
+                </code>
+            </example>
+        </member>
+        <member name="P:Agenda.Database.DatabaseAvailable">
+            <summary>
+            Getter et Setter du booléen sqldb_available
+            </summary>
+            <example>
+                Méthode de mise en oeuvre pour le Getter :
+                <code>
+                    boolean isDatabaseAvailable = Database.DatabaseAvailable
+                </code>
+                Méthode de mise en oeuvre pour le Setter :
+                <code>
+                    Database.DatabaseAvailable = true;
+                </code>
+            </example>
+        </member>
+        <member name="P:Agenda.Database.Message">
+            <summary>
+                Getter et Setter pour le message
+            </summary>
+        </member>
+        <member name="M:Agenda.Database.CreateDatabase(System.String)">
+            <summary>
+                Méthode de création de la base de données. Cette méthode est mise en privée car elle n'est utilisée que par le constructeur Database(string dbname)
+            </summary>
+            <param name="sqldb_name">Le nom de la base de données à créer</param>
+            <see cref="M:Agenda.Database.#ctor(System.String)"/>
+        </member>
+        <member name="M:Agenda.Database.AddEvent(Agenda.Evenement)">
+            <summary>
+                Méthode permettant d'ajouter un événement à la base de données
+            </summary>
+            <param name="evenement">L'événement à ajouter</param>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements");
+                    bdd.AddEvent(new Evenement(0, "Test", "Ceci est un test !", 1491211155, 3, 4, 2017));
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.Database.UpdateEvent(Agenda.Evenement)">
+            <summary>
+                Méthode permettant de mettre à jour un événement déjà présent dans la base de données.
+            </summary>
+            <param name="evenement">L'événement mis à jour</param>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements");
+                    bdd.updateEvent(new Evenement(0, "Test", "Ceci est mis à jours !", 1491211155, 3, 4, 2017));
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.Database.DeleteEvent(System.Int32)">
+            <summary>
+                Méthode permettant de supprimer un événement dans notre base de données
+            </summary>
+            <param name="identifiant">L'identifiant de l'événement à supprimer</param>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements");
+                    bdd.DeleteEvent(1);
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.Database.GetEventWithName(System.String)">
+            <summary>
+                Méthode permettant de sélectionner un événement dans la base de données à partir de son nom.
+            </summary>
+            <param name="name">Le Nom de l'événement</param>
+            <returns>L'événement voulu</returns>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements");
+                    Evenement evenementTest = bdd.GetEventWithName("Test");
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.Database.GetAllEvents">
+            <summary>
+                Méthode permettant de récupérer la liste des événements présents dans la base de données.
+            </summary>
+            <returns>La liste des événements</returns>
+            <example>
+                Méthode de mise en oeuvre :
+                <code>
+                    Database bdd = new Database("Evenements");
+                    ArrayList listeEvenements = bdd.GetAllEvents();
+                </code>
+            </example>
+        </member>
+        <member name="M:Agenda.MainActivity.OnCreate(Android.OS.Bundle)">
+            <summary>
+                Méthode OnCreate nécessaire pour créer l'activité
+            </summary>
+            <param name="savedInstanceState"></param>
+        </member>
+        <member name="M:Agenda.MainActivity.InitialiserDatabase">
+            <summary>
+                Méthode permettant d'initialiser la base de données.
+            </summary>
+        </member>
+        <member name="M:Agenda.MainActivity.InitialiserCalendar">
+            <summary>
+                Méthode permettant d'initialiser le calendrier de notre activité Main
+            </summary>
+        </member>
+        <member name="M:Agenda.MainActivity.InitialiserButtons">
+            <summary>
+                Méthode permettant d'initialiser les différents boutons de notre activité Main
+            </summary>
+        </member>
+        <member name="M:Agenda.MainActivity.InitialiserEventLayout">
+            <summary>
+                Méthode permettant d'initialiser l'aperçu d'un événement dans notre activité Main
+            </summary>
+        </member>
+        <member name="M:Agenda.MainActivity.OnDateSelected(MaterialCalendarLibrary.MaterialCalendarView,MaterialCalendarLibrary.CalendarDay,System.Boolean)">
+            <summary>
+                Méthode issue de l'interface IOnDateSelectedListener, permettant de connaître la date sur laquelle l'utilisateur clique.
+            </summary>
+            <param name="p0">Le calendrier</param>
+            <param name="p1">Le jour du calendrier cliqué</param>
+            <param name="p2"></param>
+            <see cref="T:MaterialCalendarLibrary.IOnDateSelectedListener"/>
+        </member>
+        <member name="M:Agenda.MainActivity.ShouldDecorate(MaterialCalendarLibrary.CalendarDay)">
+            <summary>
+                Méthode issue de l'interface IDayViewDecorator permettant de savoir si une date du calendrier doit être décorée.
+            </summary>
+            <param name="p0"></param>
+            <returns>True si la date existe dans la liste des événements, False sinon</returns>
+            <see cref="T:MaterialCalendarLibrary.IDayViewDecorator"/>
+        </member>
+        <member name="M:Agenda.MainActivity.Decorate(MaterialCalendarLibrary.DayViewFacade)">
+            <summary>
+                Méthode permettant de décorer l'arrière plan d'une case du calendrier. Elle est dessiner que si la méthode ShouldDecorate renvoie True !
+            </summary>
+            <param name="p0"></param>
+            <see cref="T:MaterialCalendarLibrary.IDayViewDecorator"/>
+            <see cref="M:Agenda.MainActivity.ShouldDecorate(MaterialCalendarLibrary.CalendarDay)"/>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.OnCreate(Android.OS.Bundle)">
+            <summary>
+                Méthode OnCreate nécessaire pour créer l'activité
+            </summary>
+            <param name="savedInstanceState"></param>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.InitialiseBaseDeDonnees">
+            <summary>
+                Méthode permettant d'initialiser la base de données.
+            </summary>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.InitialiseBoutons">
+            <summary>
+                Méthode permettant d'initialiser les boutons. Elle contient :
+                    -> L'initialisation du bouton d'ouverture du fragment de date;
+                    <see cref="M:Agenda.ModifierEvenement.AfficherDatePicker"/>
+                    -> L'initialisation du bouton de validation du formulaire.
+                    <see cref="M:Agenda.ModifierEvenement.EvenementEstValide"/>
+            </summary>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.InitialiseEditText">
+            <summary>
+                Méthode permettant d'initialise les champ d'édition à partir du nom de l'événement récupéré dans l'Intent. Elle contient :
+                    -> L'initialisation du champ Nom de l'événement;
+                    -> L'initialisation du champ Description de l'événement;
+                    -> L'initialisation du champ Date de l'événement.
+            </summary>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.AfficherDatePicker">
+            <summary>
+                Méthode permettant d'afficher le DatePicker
+            </summary>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.EvenementEstValide">
+            <summary>
+                Méthode permettant de vérifier qu'un événement est valide pour l'insérer en base de données. On va tester :
+                    -> Si le nom de l'événement est renseigné;
+                    -> Si la date est supérieur à la date du jour.
+            </summary>
+            <returns>True si l'événement est valide, False sinon</returns>
+        </member>
+        <member name="M:Agenda.ModifierEvenement.OnDateSet(Android.Widget.DatePicker,System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Méthode permettant de récupérer les informations dans le Fragment DatePicker en vue d'attribuer les valeurs à l'événement. C'est un écouteur d'événement !
+            </summary>
+            <param name="view">La vue du DatePicker</param>
+            <param name="year">L'année récupérée</param>
+            <param name="monthOfYear">Le mois récupéré</param>
+            <param name="dayOfMonth">Le jour du mois récupéré</param>
+        </member>
+    </members>
+</doc>
