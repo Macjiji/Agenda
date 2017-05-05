@@ -4,7 +4,7 @@ Créer votre agenda avec Visual Studio Community et C#. Il vous permettra d'ajou
 
 ## Pour commencer
 
-Ce projet sera disponible prochainement sur mon blog pour Développeur Android
+Les explications pour créer ce projet sont disponibles sur mon [blog](http://www.androidtavern.com/2017/05/agenda-csharp/)
 
 ### Pré-requis
 
@@ -12,7 +12,7 @@ Pour utiliser ce projet, vous devez au préalable installer la bibliothèque [Xa
 
 ### Installation
 
-Les étapes pour créer ce projet seront disponibles prochainement sur mon blog pour Développeur Android
+Les étapes pour créer ce projet sont disponibles sur mon [blog](http://www.androidtavern.com/2017/05/agenda-csharp/)
 
 
 ## Projet crée avec
