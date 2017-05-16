@@ -1,6 +1,11 @@
+
+<img src="/images/pandcag.png"/>
+
 # Agenda CSharp
 
 Créer votre agenda avec Visual Studio Community et C#. Il vous permettra d'ajouter, modifier ou supprimer un événement.
+
+<img src="/images/apagj.png"/>
 
 ## Pour commencer
 
